@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Decor Booking | Maison Vintique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d0d0d;
+      color: #f3e6d6;
+      overflow-x: hidden;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: #2c2c2c; /* Dark gray background for a sleek look */
+      border-bottom: 2px solid #b58e5d; /* Lighter border color */
+      padding: 20px 80px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; /* Slightly larger font size for emphasis */
+      color: #d0b57e; /* Warm golden color for the logo */
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .nav-logo:hover {
+      color: #b58e5d; /* Hover effect for logo */
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #f3e6d6; /* Soft light color for text */
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      background-color: #b58e5d; /* Hover effect with background color */
+      color: #fff; /* Change text color on hover */
+      transform: translateY(-2px); /* Subtle lift effect */
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 30px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center; /* Center align the links on mobile */
+      }
+    }
+
+    /* Booking Form Styles */
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 40px;
+      background: #1a1a1aee;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      z-index: -1;
+      background: linear-gradient(135deg, #d2b48c, #3a2e1e, #7e5b3a);
+      border-radius: 25px;
+      filter: blur(3px);
+      animation: glow 4s linear infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #f0c89d;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input, textarea, select {
+      padding: 12px;
+      border: 1px solid #444;
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: #2a2a2a;
+      color: #f3e6d6;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #a68b64;
+      box-shadow: 0 0 10px rgba(166, 139, 100, 0.4);
+    }
+
+    label {
+      font-weight: bold;
+      color: #e1c5a2;
+    }
+
+    button {
+      padding: 15px;
+      background-color: #a67c52;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #8a6543;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      background-color: #2e2e2e;
+      color: #f0c89d;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 30px;
+      font-size: 1.2rem;
+    }
+
+    /* Product Gallery */
+    .products {
+      margin-top: 60px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      background: #1a1a1a;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-info h4 {
+      margin: 0;
+      color: #f0c89d;
+      font-size: 1.7rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .product-info p {
+      font-size: 1.3rem;
+      color: #d4b99e;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">Maison Vintique</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="vrplan.html">VR Room Planner</a></li>
+        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="category.html">Category</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" id="formBox">
+    <h1>Book Your Decor Piece</h1>
+    <form id="bookingForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required />
+
+      <label for="address">Delivery Address:</label>
+      <textarea id="address" rows="3" required></textarea>
+
+      <label for="showpiece">Select Showpiece:</label>
+      <select id="showpiece" required>
+        <option value="">-- Choose a product --</option>
+        <option value="Elegant Vase - ₹1,499">Elegant Vase - ₹1,499</option>
+        <option value="Antique Wall Clock - ₹2,199">Antique Wall Clock - ₹2,199</option>
+        <option value="Minimalist Sculpture - ₹2,799">Minimalist Sculpture - ₹2,799</option>
+        <option value="Vintage Candle Holder - ₹1,299">Vintage Candle Holder - ₹1,299</option>
+      </select>
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+
+    <div class="success-message" id="successMessage">
+      🎉 Thank you for booking with Maison Vintique! <br />
+      Your order will be delivered within 2–3 working days.
+    </div>
+  </div>
+
+  <!-- Product Gallery -->
+  <section class="products" id="products">
+    <h1 style="text-align:center;">Our Decor Collection</h1>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="images/vase.jpg" alt="Elegant Vase">
+        <div class="product-info">
+          <h4>Elegant Vase</h4>
+          <p>A sleek and classy ceramic vase for minimalist homes.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/clock.jpg" alt="Antique Clock">
+        <div class="product-info">
+          <h4>Antique Wall Clock</h4>
+          <p>A vintage-inspired wall clock to elevate your walls.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/budhaji.jpg" alt="Minimalist Sculpture">
+        <div class="product-info">
+          <h4>Minimalist Sculpture</h4>
+          <p>Abstract yet elegant — a perfect tabletop decor.</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/candles.webp" alt="Candle Holder">
+        <div class="product-info">
+          <h4>Vintage Candle Holder</h4>
+          <p>Cast iron holder for cozy, vintage charm.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Handling Script -->
+  <script>
+    document.getElementById("bookingForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      document.getElementById("bookingForm").style.display = "none";
+      document.getElementById("successMessage").style.display = "block";
+
+      gsap.from("#successMessage", {
+        opacity: 0,
+        y: 50,
+        duration: 1.5,
+        ease: "power3.out"
+      });
+    });
+  </script>
+</body>
+</html>
