@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOCUMENT</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Playfair Display', serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    #main {
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      position: relative;
+    }
+
+    #nav {
+      height: 50px;
+      width: 100%;
+      position: fixed;
+      top: 2%;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 30px;
+    }
+
+    #abc {
+      margin-top: 20px;
+      display: flex;
+      font-size: 15px;
+      gap: 30px;
+    }
+    a{
+      text-decoration: none;
+      color:inherit;
+    }
+
+    #abc h3 {
+      position: relative;
+      cursor: pointer;
+      opacity: 0;
+      color: white;
+      font-size: 25px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    #abc h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background-color: rgb(250, 247, 247);
+      transition: width 0.3s ease;
+    }
+
+    #abc h3:hover::after {
+      width: 100%;
+    }
+
+    #page1 {
+      height: 100vh;
+      width: 100%;
+      background-color: black;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      color: white;
+      text-transform: uppercase;
+      gap: 30px;
+      position: relative;
+      font-size: 40px;
+      font-weight: 900;
+    }
+
+    #f {
+      margin-left: 15px;
+    }
+
+    #sf {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #s, #f {
+      z-index: 2;
+    }
+
+    #box {
+      height: 65px;
+      background-color: white;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      width: 0px;
+      z-index: 99;
+      transition: width 0.5s ease;
+    }
+
+    video#myVideo {
+      position: absolute;
+      height: 65px;
+      width: 150px;
+      opacity: 0;
+      z-index: 8;
+      object-fit: cover;
+    }
+
+    #page1 #imge {
+      height: 120px;
+      width: 180px;
+      border-radius: 0%;
+      opacity: 0;
+      z-index: 9999;
+      overflow: hidden;
+      margin-bottom: 50px;
+    }
+
+    #imge img {
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* 🔲 Video Cards */
+    .video-section {
+      position: absolute;
+      top: 160px;
+      left: 20px;
+      width: 260px;
+      height: calc(100vh - 180px);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      scrollbar-width: none;
+      opacity: 0;
+      z-index: 10;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+
+    .video-section::-webkit-scrollbar {
+      display: none;
+    }
+
+    .video-card {
+      width: 230px;
+      height: 180px;
+      overflow: hidden;
+      cursor: pointer;
+      flex: 0 0 auto;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      position: relative;
+      transition: transform 0.3s ease, border 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .video-card:hover {
+      transform: scale(1.05);
+      border: 2px solid #fff;
+    }
+
+    .video-card.active {
+      border: 2px solid #ffd700;
+    }
+
+    .video-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 🔳 Background Video Player */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 9;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .background-video.active {
+      opacity: 1;
+    }
+
+    /* 🔳 Video Name Display */
+    .video-name {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 60px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 448px) {
+      #page1 {
+        font-size: 6vw;
+      }
+      .video-section {
+        width: 200px;
+        height: calc(100vh - 180px);
+      }
+      .video-card {
+        width: 180px;
+        height: 140px;
+      }
+      .video-name {
+        font-size: 32px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div id="page1">
+      <div id="nav">
+        <a href="home.html"><div id="imge"><img src="./WhatsApp Image 2025-04-19 at 16.35.42_940a037e.jpg" alt=""></div></a>
+        <div id="abc">
+          <a href="about.html"><h3>About Us</h3></a>
+          <a href="feedback.html"><h3>Feedback</h3></a>
+          <h3>Categories</h3>
+          <a href="vrplan.html"><h3>VR Planner</h3></a>
+          <a href="sustainable.html"><h3>Sustainability</h3></a>
+          <a href="bookings.html"><h3>Booking</h3></a>
+          
+          
+        </div>
+      </div>
+      <div id="sf">
+        <h1 id="s">M</h1>
+        <h1 id="risti">aison</h1>
+        <h1 id="f">v</h1>
+        <h1 id="ilm">intique</h1>
+        <div id="box"></div>
+      </div>
+      <video id="myVideo" autoplay muted loop>
+        <source src="vido.mp4" type="video/mp4">
+      </video>
+      <video class="background-video" id="bgVideo" muted playsinline autoplay loop></video>
+      <div class="video-name"></div>
+      <div class="video-section" style="margin-left: 15px;">
+        <div class="video-card" data-src="homes.mp4" data-name="Hall Decors">
+          <video muted playsinline autoplay loop src="homes.mp4"></video>
+        </div>
+        <div class="video-card" data-src="kitchen.mp4" data-name="Kitchen Decors">
+          <video muted playsinline autoplay loop src="kitchen.mp4"></video>
+        </div>
+        <div class="video-card" data-src="vases.mp4" data-name="Vases & Cushions">
+          <video muted playsinline autoplay loop src="vases.mp4"></video>
+        </div>
+        <div class="video-card" data-src="fountains.mp4" data-name="Aesthetic Fountains">
+          <video muted playsinline autoplay loop src="fountains.mp4"></video>
+        </div>
+        <div class="video-card" data-src="chandlier.mp4" data-name="Chandeliers">
+          <video muted playsinline autoplay loop src="chandlier.mp4"></video>
+        </div>
+        <div class="video-card" data-src="9583751-uhd_2560_1440_25fps.mp4" data-name="Sofas & ShowPieces">
+          <video muted playsinline autoplay loop src="9583751-uhd_2560_1440_25fps.mp4"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js" integrity="sha512-AMl4wfwAmDM1lsQvVBBRHYENn1FR8cfOTpt8QVbb/P55mYOdahHD4LmHM1W55pNe3j/3od8ELzPf/8eNkkjISQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js" integrity="sha512-VJ/iYbiu1eJ6yLimfTi65t2R9TFcG5D9X8ZCfbbEFhTfPnKJh8byoKXEawi5ScJZBYL1eiirL1+MczZDx0Tz9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/textillate@0.4.1/jquery.textillate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js" integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    var tl = gsap.timeline();
+
+    tl.to("#sf #risti, #sf #ilm", {
+      y: 100,
+      delay: 1,
+      duration: 1,
+      ease: "power4.out"
+    })
+    .to("#s", {
+      x: 250,
+      duration: 1
+    })
+    .to("#s", {
+      x: 190,
+      duration: 2
+    }, "same")
+    .to("#f", {
+      x: 130,
+      duration: 2
+    }, "same")
+    .to("#box", {
+      opacity: 1,
+      width: "170px",
+      duration: 2
+    }, "same")
+    .to("#box", {
+      duration: 2,
+      y: 300,
+      delay: 1
+    }, "opeone")
+    .to("#myVideo", {
+      opacity: 1
+    }, "opeone")
+    .to("#myVideo", {
+      scale: 1,
+      width: "100%",
+      height: "100%",
+      top: 0,
+      left: 0,
+      position: "absolute",
+      duration: 2,
+      onComplete: function() {
+        // Show initial video name
+        gsap.to(".video-name", {
+          opacity: 1,
+          duration: 0.3,
+          onStart: () => {
+            document.querySelector(".video-name").textContent = document.getElementById('myVideo').getAttribute('data-name');
+          }
+        });
+      }
+    })
+    .to("#myVideo", {
+      delay: 2
+    })
+    .to("#s, #f", {
+      opacity: 0
+    })
+    .to("#page1 #imge, #abc h3", {
+      opacity: 1,
+      stagger: 0.3
+    })
+    .to(".video-section", {
+      opacity: 1,
+      duration: 1,
+      onComplete: function() {
+        initializeVideoCards();
+      }
+    });
+
+    function initializeVideoCards() {
+      const cards = document.querySelectorAll('.video-card');
+      const bgVideo = document.getElementById('bgVideo');
+      const myVideo = document.getElementById('myVideo');
+      const videoName = document.querySelector('.video-name');
+      let currentActiveCard = null;
+      let isHovering = false;
+
+      function getViewportCenter() {
+        return window.innerHeight / 2 + window.scrollY;
+      }
+
+      function updateBackgroundVideo(src, name) {
+        if (bgVideo.src !== src) {
+          gsap.to([bgVideo, myVideo, videoName], {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => {
+              bgVideo.src = src;
+              bgVideo.load();
+              bgVideo.play().catch((error) => console.log("Autoplay prevented:", error));
+              videoName.textContent = name;
+              gsap.to([bgVideo, videoName], {
+                opacity: 1,
+                duration: 0.3
+              });
+            }
+          });
+        } else {
+          gsap.to(bgVideo, { opacity: 1, duration: 0.3 });
+          gsap.to(myVideo, { opacity: 0, duration: 0.3 });
+          gsap.to(videoName, {
+            opacity: 1,
+            duration: 0.3,
+            onStart: () => {
+              videoName.textContent = name;
+            }
+          });
+        }
+        bgVideo.classList.add('active');
+      }
+
+      function updateActiveCard() {
+        cards.forEach((card) => {
+          card.classList.remove('active');
+        });
+        if (currentActiveCard) {
+          currentActiveCard.classList.add('active');
+        }
+      }
+
+      function findClosestCard() {
+        let closestCard = null;
+        let minDistance = Infinity;
+
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const centerOfCard = rect.top + rect.height / 2 + window.scrollY;
+          const distance = Math.abs(getViewportCenter() - centerOfCard);
+
+          if (distance < minDistance && rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            minDistance = distance;
+            closestCard = card;
+          }
+        });
+
+        return closestCard;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!isHovering) {
+            const closestCard = findClosestCard();
+            if (closestCard && closestCard !== currentActiveCard) {
+              currentActiveCard = closestCard;
+              const src = closestCard.getAttribute('data-src');
+              const name = closestCard.getAttribute('data-name');
+              updateBackgroundVideo(src, name);
+              updateActiveCard();
+            }
+          }
+        },
+        {
+          root: null,
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+          rootMargin: '0px'
+        }
+      );
+
+      cards.forEach((card) => {
+        observer.observe(card);
+      });
+
+      cards.forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+          isHovering = true;
+          currentActiveCard = card;
+          const src = card.getAttribute('data-src');
+          const name = card.getAttribute('data-name');
+          updateBackgroundVideo(src, name);
+          updateActiveCard();
+        });
+
+        card.addEventListener('mouseleave', () => {
+          isHovering = false;
+          const closestCard = findClosestCard();
+          if (closestCard) {
+            currentActiveCard = closestCard;
+            const src = closestCard.getAttribute('data-src');
+            const name = closestCard.getAttribute('data-name');
+            updateBackgroundVideo(src, name);
+            updateActiveCard();
+          }
+        });
+
+        card.addEventListener('click', () => {
+          isHovering = false;
+          currentActiveCard = card;
+          const src = card.getAttribute('data-src');
+          const name = card.getAttribute('data-name');
+          updateBackgroundVideo(src, name);
+          updateActiveCard();
+        });
+      });
+
+      window.addEventListener('scroll', () => {
+        if (!isHovering) {
+          const closestCard = findClosestCard();
+          if (closestCard && closestCard !== currentActiveCard) {
+            currentActiveCard = closestCard;
+            const src = closestCard.getAttribute('data-src');
+            const name = closestCard.getAttribute('data-name');
+            updateBackgroundVideo(src, name);
+            updateActiveCard();
+          }
+        }
+      });
+
+      if (cards.length > 0) {
+        const initialCard = findClosestCard();
+        if (initialCard) {
+          currentActiveCard = initialCard;
+          const src = initialCard.getAttribute('data-src');
+          const name = initialCard.getAttribute('data-name');
+          updateBackgroundVideo(src, name);
+          updateActiveCard();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
