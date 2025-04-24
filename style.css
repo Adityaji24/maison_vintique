@@ -1,0 +1,146 @@
+*{
+
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: gilroy;
+     
+     }
+     html,body{
+     
+     height:100%;
+     width:100%;
+     
+     }
+     #main{
+          height: 100vh;
+          width: 100vw;
+     
+     }
+     #nav{
+       height: 50px;
+       width: 100%;
+       /* background-color: red; */
+       position: absolute;
+       top: 2%;
+       z-index: 999;
+       /* opacity: 0; */
+       display: flex;
+       justify-content: space-between;
+       padding: 0px 30px;
+     }
+     #abc{
+       margin-top: 20px;
+       display: flex;
+       gap: 30px;
+       /* opacity: 0; */
+     }
+     #abc h3 {
+       position: relative;
+       cursor: pointer;
+       opacity: 0;
+
+     }
+     
+     #abc h3::after {
+       content: '';
+       position: absolute;
+       left: 0;
+       bottom: -5px; /* thoda neeche line dikhane ke liye */
+       width: 0%;
+       height: 2px;
+       background-color: rgb(250, 247, 247);
+       transition: width 0.3s ease;
+     }
+     
+     #abc h3:hover::after {
+       width: 100%;
+     }
+     
+     #page1{
+          height: 100%;
+          width: 100%;
+          background-color: black;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          flex-direction: column;
+          color: white;
+          text-transform: uppercase;
+          gap: 30px;
+          position: relative;
+          font-size: 40px;
+          font-weight: 900;
+     }
+     
+     #f{
+          margin-left: 15px;
+     }
+     #sf {
+          display: flex;
+          /* background-color: red; */
+          overflow: hidden;
+          position: relative; /* so #box can be placed in center */
+          justify-content: center;
+          align-items: center;
+        }
+        
+        #s, #f {
+          z-index: 2;
+        }
+        
+        #box {
+          height: 65px;
+          background-color: white;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%); /* center */
+          opacity: 0;
+          width: 0px; /* start from 0 */
+          z-index: 99;
+          transition: width 0.5s ease;
+        }
+        video#myVideo {
+         position: absolute;
+         height: 65px;
+         width: 150px;
+         opacity: 0;
+         z-index: 9;
+         
+         object-fit: cover;
+       }
+       #page1 #imge {
+        height: 140px; /* increased from 100px */
+        width: 200px;  /* increased from 80px */
+        background-color: red;
+        opacity: 1; /* made visible */
+        z-index: 9999;
+        left: 4%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* optional: adds a subtle shadow */
+      }
+      a{
+        text-decoration: none;
+        color:inherit
+      }
+      
+      #imge img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+      }
+      
+      #imge:hover img {
+        transform: scale(1.05); /* subtle zoom on hover */
+      }
+      
+       @media (max-width: 448px) {
+         #page1 {
+           font-size: 6vw;
+         }
+       }
