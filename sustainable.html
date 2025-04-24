@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Sustainable Approach</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0d0d0d;
+      --bg-light-dark: #1a1a1a;
+      --text-light: #f2f2f2;
+      --text-muted: #cccccc;
+      --accent-color: #ffdfb9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+     /* Navbar Styles */
+    .navbar {
+      background-color: #2c2c2c; /* Dark gray background for a sleek look */
+      border-bottom: 2px solid #b58e5d; /* Lighter border color */
+      padding: 20px 80px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; /* Slightly larger font size for emphasis */
+      color: #d0b57e; /* Warm golden color for the logo */
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .nav-logo:hover {
+      color: #b58e5d; /* Hover effect for logo */
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #f3e6d6; /* Soft light color for text */
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      background-color: #b58e5d; /* Hover effect with background color */
+      color: #fff; /* Change text color on hover */
+      transform: translateY(-2px); /* Subtle lift effect */
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 30px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center; /* Center align the links on mobile */
+      }
+    }
+
+
+    header {
+      background: linear-gradient(to right, #111, #222);
+      color: var(--accent-color);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      letter-spacing: 1px;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .section {
+      background: var(--bg-light-dark);
+      margin-bottom: 4rem;
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section p {
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+    }
+
+    .section ul {
+      list-style: disc;
+      padding-left: 25px;
+      color: var(--text-light);
+    }
+
+    .section li {
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #111;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .carousel-section {
+      max-width: 950px;
+      margin: 4rem auto;
+      text-align: center;
+    }
+
+    .slider {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      transform-style: preserve-3d;
+      animation: rotate 25s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: perspective(800px) rotateY(0deg);
+      }
+      100% {
+        transform: perspective(800px) rotateY(360deg);
+      }
+    }
+
+    .slider span {
+      position: absolute;
+      top: 10%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: center;
+      transform-style: preserve-3d;
+      transform: rotateY(calc(var(--i) * 45deg)) translateZ(320px);
+    }
+
+    .slider span img {
+      width: 90%;
+      height: 90%;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .slider span img:hover {
+      transform: scale(1.15);
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .section h2 {
+        font-size: 1.6rem;
+      }
+
+      .section p, .section li {
+        font-size: 0.95rem;
+      }
+
+      .slider {
+        width: 180px;
+        height: 180px;
+      }
+
+      .slider span {
+        transform: rotateY(calc(var(--i) * 45deg)) translateZ(230px);
+      }
+    }
+  </style>
+</head>
+<body>
+   <!-- Navbar -->
+ <nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">Maison Vintique</div>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="vrplan.html">VR Room Planner</a></li>
+      <li><a href="sustainability.html">Sustainability</a></li>
+      <li><a href="category.html">Categories</a></li>
+      <li><a href="bookings.html">Bookings</a></li>
+      
+    </ul>
+  </div>
+</nav>
+  <header>
+    <h1>Our Sustainable Approach</h1>
+  </header>
+
+  <section class="section" id="manufacturing">
+    <h2>How We Manufacture</h2>
+    <p>
+      At Masion Vintique, sustainability is at the core of every process. Our manufacturing methods are thoughtfully designed to minimize ecological impact while upholding the highest standards of design and quality. We carefully select materials, methods, and technologies that reduce environmental impact, and we are continuously evolving to ensure our operations have the least possible ecological footprint.
+    </p>
+    <ul>
+      <li><strong>Eco-Friendly Materials:</strong> We use reclaimed wood, recycled metals, and natural fibers that have a minimal environmental impact.</li>
+      <li><strong>Low-Waste Production:</strong> Our lean manufacturing processes are designed to reduce water, waste, and energy use at every stage of production.</li>
+      <li><strong>Durable Designs:</strong> We create products built to last, promoting longevity and reducing the need for constant replacements, ultimately reducing waste.</li>
+      <li><strong>Ethical Manufacturing:</strong> Our partnerships with manufacturers who share our values ensure fair wages and working conditions.</li>
+    </ul>
+  </section>
+
+  <section class="section" id="innovation">
+    <h2>Our Innovation</h2>
+    <p>
+      We blend traditional craftsmanship with cutting-edge technology to bring you timeless designs that meet the challenges of the modern world. Our innovative spirit drives us to continuously seek better solutions to environmental issues, and we are committed to pioneering eco-friendly practices across all areas of our business.
+    </p>
+    <ul>
+      <li><strong>Zero-Waste Vision:</strong> Our goal is to reuse, repurpose, and eliminate single-use plastics in all our packaging and production processes.</li>
+      <li><strong>Carbon Neutrality:</strong> By implementing green energy solutions and supporting reforestation projects, we are working towards achieving carbon neutrality across our operations.</li>
+      <li><strong>Advanced Eco-Materials:</strong> We are leading the way in using recycled PET, biodegradable resins, and plant-based alternatives to traditional plastics, ensuring that our products are both beautiful and sustainable.</li>
+      <li><strong>Smart Manufacturing:</strong> We integrate smart technology and automation to optimize energy efficiency and reduce waste in our factories.</li>
+    </ul>
+  </section>
+
+  <section class="section" id="products">
+    <h2>Our Products</h2>
+    <p>
+      Our products are more than just items for your home; they are the result of years of careful design, sourcing, and sustainability efforts. From bamboo furniture to organic textiles, every product we offer is a testament to our commitment to the environment and to the beauty of nature.
+    </p>
+    <ul>
+      <li><strong>Bamboo Furniture:</strong> Sleek, sustainable, and crafted with zero-waste packaging. Our bamboo furniture is as strong as it is environmentally friendly.</li>
+      <li><strong>Organic Bedsheets:</strong> Made from GOTS-certified cotton, our organic bedsheets offer both luxury and sustainability, ensuring that every night’s rest is eco-friendly.</li>
+      <li><strong>Date Palm Planters:</strong> Hand-crafted and fully biodegradable, these planters are not only beautiful but also promote sustainable farming practices.</li>
+      <li><strong>Bamboo Lamps:</strong> Artisanal lighting that not only illuminates your space but also supports the growth of renewable bamboo.</li>
+      <li><strong>Recycled Glassware:</strong> We offer elegant, handcrafted glassware made from 100% recycled glass, ensuring that every piece is both functional and environmentally responsible.</li>
+    </ul>
+  </section>
+
+  <div class="carousel-section">
+    <div class="slider">
+      <span style="--i:0;"><img src="https://pritihome.com/wp-content/uploads/2024/03/1-68-1.webp" alt="Sustainable decor"></span>
+      <span style="--i:1;"><img src="https://thumbs.dreamstime.com/b/bamboo-furniture-5235619.jpg" alt="Eco-friendly furniture"></span>
+      <span style="--i:2;"><img src="https://bluprint-onemega.com/wp-content/uploads/2024/04/all-natural-the-ayers-cork-furniture-and-lighting-set-4.jpeg" alt="Natural materials"></span>
+      <span style="--i:3;"><img src="https://s.alicdn.com/@sc04/kf/H210856605250434cbaed6ccf508f0254q.jpg" alt="Recycled products"></span>
+      <span style="--i:4;"><img src="https://brownliving.in/cdn/shop/articles/how-to-create-an-eco-friendly-living-room-tips-for-sustainable-furniture-and-decor-choices-959652.jpg?v=1721819543" alt="Bamboo lamps"></span>
+      <span style="--i:5;"><img src="https://www.fnp.com/images/pr/l/v20230724175633/2-layers-bamboo-plant-in-a-white-ceramic-pot_1.jpg" alt="Organic textiles"></span>
+      <span style="--i:6;"><img src="https://m.media-amazon.com/images/I/712gdOU+59L.jpg" alt="Artisan planters"></span>
+      <span style="--i:7;"><img src="https://www.homesake.in/cdn/shop/files/IH0C935_theme.jpg?v=1704781012" alt="Sustainable homeware"></span>
+    </div>
+  </div>
+
+  <section class="section" id="rnd">
+    <h2>Research & Development</h2>
+    <p>
+      At Masion Vintique, our Research & Development team is continuously exploring innovative materials and processes to create even more sustainable solutions. We collaborate with scientists, engineers, and artisans to ensure that every new product is not only eco-friendly but also functional, beautiful, and built to last.
+    </p>
+    <ul>
+      <li><strong>Biodegradable Coatings:</strong> Our plant-based coatings are designed to protect your furniture while leaving no harmful environmental footprint.</li>
+      <li><strong>Circular Design:</strong> We prioritize circularity, ensuring our products can be easily disassembled and repurposed or recycled at the end of their life cycle.</li>
+      <li><strong>Eco-Fabric Testing:</strong> Our textiles are made from the finest natural fibers such as hemp, banana fiber, and other plant-based weaves that are both eco-friendly and durable.</li>
+    </ul>
+  </section>
+
+  <section class="section" id="overview">
+    <h2>Overview</h2>
+    <p>
+      Masion Vintique isn’t just about home decor. It’s a movement. A philosophy of elegance, ethics, and environmental respect. We believe that every piece of furniture, every textile, every decor item has a story to tell. It is a story of craftsmanship, sustainability, and care for our planet. Join us in creating a more beautiful and sustainable world, one home at a time.
+    </p>
+  </section>
+
+  <script>
+    // JavaScript for scroll-triggered animation
+    const sections = document.querySelectorAll('.section');
+
+    function onScroll() {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.8) {
+          section.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll);
+    onScroll(); // Initial check for visibility
+  </script>
+</body>
+</html>
