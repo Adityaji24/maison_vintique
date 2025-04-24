@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VR Design Planner with Cursor Trail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vrplan.css">
+</head>
+<body>
+   <!-- Navbar -->
+   <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">Maison Vintique</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="vrplan.html">VR Room Planner</a></li>
+        <li><a href="sustainable.html">Sustainability</a></li>
+        <li><a href="category.html">Category</a></li>
+        <li><a href="bookings.html">Bookings</a></li>
+        
+      </ul>
+    </div>
+  </nav>
+
+
+  <div id="trail-container"></div>
+  <div id="bottom-bubble-container"></div>
+
+  <div class="cont" id="mainContainer">
+    <h1 id="welcome" style="font-family: ausa;">Welcome to VR Design Planner</h1>
+
+    <div class="question" id="readyQuestion">
+      <h2 id="readyText">Are you ready to design?</h2>
+      <button id="startBtn" onclick="startPlanner()">Let's Go</button>
+    </div>
+
+    <div class="theme-buttons" id="themeSelection">
+      <h2 id="themeText">Select your color combination design:</h2>
+      <button onclick="setTheme('light')">Light</button>
+      <button onclick="setTheme('dark')">Dark</button>
+      <button onclick="setTheme('aesthetic')">Aesthetic</button>
+      <button onclick="setTheme('warm')">Warm</button>
+    </div>
+
+    <div class="product-options" id="productOptions">
+      <h2 id="productText">What do you want?</h2>
+      <button onclick="showProducts('chandelier')">Chandeliers</button>
+      <button onclick="showProducts('wallpaper')">Wallpapers</button>
+      <button onclick="showProducts('vase')">Vases</button>
+      <button onclick="showProducts('decor')">Decors</button>
+      <button onclick="showProducts('ceiling')">Ceiling Lights</button>
+      
+    </div>
+
+    <div class="product-cards" id="productCards"></div>
+  </div>
+
+  <script>
+    // VR Planner Logic
+    const readyQuestion = document.getElementById('readyQuestion');
+    const themeSelection = document.getElementById('themeSelection');
+    const productOptions = document.getElementById('productOptions');
+    const productCards = document.getElementById('productCards');
+    const mainContainer = document.getElementById('mainContainer');
+    const welcomeText = document.getElementById('welcome');
+    const readyText = document.getElementById('readyText');
+    const themeText = document.getElementById('themeText');
+    const productText = document.getElementById('productText');
+    const bubbleContainer = document.getElementById('bottom-bubble-container');
+
+    window.onload = () => {
+      setTimeout(() => {
+        readyQuestion.classList.add('visible');
+        startBubbleEffect();
+      }, 1500);
+    };
+
+    function startPlanner() {
+      mainContainer.classList.add('booster');
+      setTimeout(() => {
+        themeSelection.classList.add('visible');
+      }, 1000);
+    }
+
+    function setTheme(theme) {
+      const themes = {
+        light: {
+          bg: '#f9f9f9',
+          text: '#1a1a1a',
+          button: '#dedede',
+          cardBg: '#ffffff',
+          cardText: '#000'
+        },
+        dark: {
+          bg: '#2c2c2c',
+          text: '#ffffff',
+          button: '#444',
+          cardBg: '#3a3a3a',
+          cardText: '#f9f9f9'
+        },
+        aesthetic: {
+          bg: '#dcd6f7',
+          text: '#3a3a3a',
+          button: '#b4b1e4',
+          cardBg: '#f0ecff',
+          cardText: '#2c2c2c'
+        },
+        warm: {
+          bg: '#fff4e6',
+          text: '#5c3b28',
+          button: '#f2c9a5',
+          cardBg: '#ffe8d1',
+          cardText: '#4b2d1f'
+        }
+      };
+
+      const currentTheme = themes[theme];
+      document.body.style.backgroundColor = currentTheme.bg;
+      document.body.style.color = currentTheme.text;
+      welcomeText.style.color = currentTheme.text;
+      readyText.style.color = currentTheme.text;
+      themeText.style.color = currentTheme.text;
+      productText.style.color = currentTheme.text;
+
+      document.querySelectorAll('button').forEach(btn => {
+        btn.style.backgroundColor = currentTheme.button;
+        btn.style.color = currentTheme.text;
+      });
+
+      // Update cursor trail color to match theme text color
+      document.querySelectorAll('.trail').forEach(trail => {
+        trail.style.backgroundColor = currentTheme.text;
+      });
+
+      productOptions.classList.add('visible');
+
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.backgroundColor = currentTheme.cardBg;
+        card.style.color = currentTheme.cardText;
+      });
+    }
+
+    function showProducts(type) {
+      const products = {
+        
+        chandelier: [
+          { name: '24K Crystal Gold Royal Chandelier', price: 120, image: 'https://m.media-amazon.com/images/I/71WQ60F7nsL._AC_UF1000,1000_QL80_.jpg' },
+          { name: 'Square Crystal Flush Mount Chandelier', price: 150, image: 'https://haroldelectricals.com/cdn/shop/files/logro_4-2_3_1080x.jpg?v=1738928731' },
+          { name: 'LED Crystal Chandelier', price: 180, image: 'https://fandomlights.com/cdn/shop/products/fandom-lights-chandelier-led-crystal-chandelier-ceiling-light-for-home-living-room-drawing-room-warm-white-28117437350052.jpg?v=1709367942' }
+        ],
+        wallpaper: [
+          { name: 'Floral Print', price: 45, image: 'https://m.media-amazon.com/images/I/71i-98LZaML._AC_UF1000,1000_QL80_.jpg' },
+          { name: 'Geometric', price: 50, image: 'https://i.pinimg.com/474x/bf/a7/2d/bfa72decd749add212e6c1e25dc0dafb.jpg' },
+          { name: 'Nature Theme', price: 40, image: 'https://cdn.magicdecor.in/com/2023/06/13133916/Wallpaper-Palim-Trees-710x488.jpg' }
+        ],
+        vase: [
+          { name: 'Glass Vase', price: 25, image: 'https://img.tatacliq.com/images/i19//437Wx649H/MP000000023547989_437Wx649H_202409052141181.jpeg' },
+          { name: 'Ceramic Pot', price: 30, image: 'https://market99.com/cdn/shop/products/light-pink-ceramic-curvy-vase-engraved-floral-pattern-flower-holder-vases-1-29122138603690.jpg?v=1737478703' },
+          { name: 'Marble Finish', price: 35, image: 'https://i.pinimg.com/736x/e8/54/c1/e854c1396bb90386df83af5d069224a9.jpg' }
+        ],
+        decor: [
+          { name: 'Wall Clock', price: 20, image: 'https://m.media-amazon.com/images/I/51UWqBTa1rL._AC_UF894,1000_QL80_.jpg' },
+          { name: 'Photo Frame', price: 15, image: 'https://m.media-amazon.com/images/I/6172vGpqvKL._AC_UF1000,1000_QL80_.jpg' },
+          { name: 'Mini Statues', price: 25, image: 'https://www.ulcdn.net/images/products/316886/product/VMI_Showpiece_LP.jpg?1614055032' }
+        ],
+        ceiling: [
+          { name: 'LED Acrylic Square Ceiling Lights', price: 20, image: 'https://m.media-amazon.com/images/I/51RRtypu4rL.jpg' },
+          { name: 'Spiral Ceiling lights', price: 15, image: 'https://thejhoomarstore.in/cdn/shop/files/fandom-lights-chandelier-3-light-3-rings-golden-modern-led-chandelier-hanging-suspension-lamp-warm-white-281_1.jpg?v=1708080582' },
+          { name: 'Saturn Round Led', price: 25, image: 'https://in.shop.lighting.philips.com/cdn/shop/files/Saturn_582056_App2.jpg?v=1744793114'}
+        ]
+        
+        
+      };
+
+      const cardStyles = {
+        bg: window.getComputedStyle(document.body).backgroundColor,
+        color: window.getComputedStyle(document.body).color
+      };
+
+      productCards.innerHTML = '';
+      products[type].forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <h3>${item.name}</h3>
+          <p>$${item.price}</p>
+          <button onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>
+        `;
+        card.style.backgroundColor = cardStyles.bg;
+        card.style.color = cardStyles.color;
+        productCards.appendChild(card);
+      });
+      productCards.classList.add('visible');
+    }
+
+    function addToCart(productName, productPrice) {
+      alert(`Added ${productName} - $${productPrice} to cart!`);
+    }
+
+    // Bubble effect logic
+    function startBubbleEffect() {
+      function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        // Random size between 15px and 30px for larger bubbles
+        const size = Math.random() * 15 + 15;
+        bubble.style.setProperty('--size', `${size}px`);
+        // Random horizontal offset for wobbling
+        const xOffset = (Math.random() - 0.5) * 200; // Between -100 and 100 pixels
+        bubble.style.setProperty('--x-offset', xOffset);
+        // Random starting position across viewport width
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubbleContainer.appendChild(bubble);
+
+        // Remove bubble after animation completes
+        setTimeout(() => {
+          bubble.remove();
+        }, 4000); // Matches animation duration
+      }
+
+      // Create bubbles at intervals
+      const bubbleInterval = setInterval(createBubble, 30); // New bubble every 30ms for more bubbles
+
+      // Stop creating bubbles after 5 seconds
+      setTimeout(() => {
+        clearInterval(bubbleInterval);
+      }, 5000);
+    }
+
+    // Cursor trail logic
+    const container = document.getElementById("trail-container");
+    const trails = [];
+    const numTrails = 20;
+
+    for (let i = 0; i < numTrails; i++) {
+      const div = document.createElement("div");
+      div.classList.add("trail");
+      container.appendChild(div);
+      trails.push({ el: div, x: 0, y: 0 });
+    }
+
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function animateTrail() {
+      let x = mouse.x;
+      let y = mouse.y;
+
+      trails.forEach((trail, index) => {
+        trail.x += (x - trail.x) * 0.3;
+        trail.y += (y - trail.y) * 0.3;
+        trail.el.style.transform = `translate(${trail.x}px, ${trail.y}px)`;
+
+        x = trail.x;
+        y = trail.y;
+      });
+
+      requestAnimationFrame(animateTrail);
+    }
+
+    animateTrail();
+  </script>
+
+</body>
+</html>
