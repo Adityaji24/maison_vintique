@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maison Vintique - Products</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d0d0d;
+      color: #ffd700;
+      overflow-x: hidden;
+    }
+    /* Navbar Styles */
+.navbar {
+      background-color:black; /* Dark gray background for a sleek look */
+      border-bottom: 2px solid #b58e5d; /* Lighter border color */
+      padding: 20px 80px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; /* Slightly larger font size for emphasis */
+      color: #d0b57e; /* Warm golden color for the logo */
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .nav-logo:hover {
+      color: #b58e5d; /* Hover effect for logo */
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #f3e6d6; /* Soft light color for text */
+      font-size: 1.4rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      background-color: #b58e5d; /* Hover effect with background color */
+      color: #fff; /* Change text color on hover */
+      transform: translateY(-2px); /* Subtle lift effect */
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 30px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center; /* Center align the links on mobile */
+      }
+    }
+
+    @font-face {
+      font-family:dance ;
+      src: url('DancingScript-VariableFont_wght.ttf');
+    }
+    header {
+      background-color: #111;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #ffd700;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 1.5rem;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #ffd700;
+    }
+
+    .products-section {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .product-card {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem;
+      color: #ffd700;
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(255, 215, 0, 0.3);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product-card h4 {
+      margin: 0.5rem 0;
+      font-size: 1.8rem;
+      color: #fff;
+      font-family: dance;
+    }
+
+    .product-card p {
+      font-size: 1.5rem;
+      color: #d4af37;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-card button {
+      padding: 0.5rem 1.2rem;
+      background-color: #ffd700;
+      color: #000;
+      font-weight: 600;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .product-card button:hover {
+      background-color: #fff;
+    }
+
+    @media screen and (max-width: 1024px) {
+      .products-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .products-section {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">Maison Vintique</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="vrplan.html">VR Room Planner</a></li>
+        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="bookings.html">Bookings</a></li>
+        <li><a href="cart.html">
+          <i class="ri-shopping-cart-line" style="font-size: 2rem;"></i>
+        </a></li>
+        
+      </ul>
+    </div>
+  </nav>
+  <section>
+    <h2 class="section-title" style="font-family: dance;font-size: 48px;">Chandeliers</h2>
+    <div class="products-section">
+      <div class="product-card">
+        <img src="images/chandelier.webp" alt="Chandelier 1">
+        <h4>Nordic LED Crystal Luxury Chandelier</h4>
+        <p>Price: $1500</p>
+        <p>Elegant and timeless LED design perfect for living rooms.</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="images/ch2.webp" alt="Chandelier 2">
+        <h4>Acrylic Bloom Chandelier</h4>
+        <p>Price: $1300</p>
+        <p>A radiant piece for luxurious Acrylic lighting aesthetics.</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="images/ch3.jpg" alt="Chandelier 3">
+        <h4>Rectangular Crystal Chandelier</h4>
+        <p>Price: $390</p>
+        <p>Ideal for vintage-themed interiors with grandeur.</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="images/lotus.jpg.crdownload" alt="Chandelier 4">
+        <h4>Lotus Petal Crystal Chandelier</h4>
+        <p>Price: $1340</p>
+        <p>Lotus Petal LED Chandelier for divine ambiance.</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title" style="font-family: dance;font-size: 48px;">Furnitures</h2>
+    <div class="products-section">
+      <div class="product-card">
+        <img src="images/funritures.jpg" alt="Wooden Table">
+        <h4>Wooden L Shaped Table</h4>
+        <p>Price: $1350</p>
+        <p>Elegant and practical wooden piece for modern homes.</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="images/sofas.png" alt="Luxury Sofa">
+        <h4>Luxury Velvet Sofa Set</h4>
+        <p>Price: $2200</p>
+        <p>Soft-touch velvet with vintage golden polish design.</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://www.leatherchairs.co.uk/phpthumbsup/q/95/src/assets/images/New%20Antiques/carved%20front.jpeg" alt="Antique Chair">
+        <h4>Antique Armchair</h4>
+        <p>Price: $6020</p>
+        <p>Handcrafted antique elegance with cushioned seating.</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.etsystatic.com/10146012/r/il/26d147/4552924265/il_570xN.4552924265_d2sd.jpg" alt="Minimalist Shelf">
+        <h4>Minimalist Bookshelf</h4>
+        <p>Price: $1900</p>
+        <p>Modern wood-metal fusion shelf with gold accents.</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="section-title" style="font-family: dance;font-size: 48px;">Table-Top</h2>
+    <div class="products-section">
+  
+      <div class="product-card">
+        <img src="https://www.jiomart.com/images/product/original/rv56sdnozq/pair-of-duck-showpiece-for-home-decor-product-images-orv56sdnozq-p591563990-0-202205241630.jpg?im=Resize=(1000,1000)" alt="Pair of Duck Showpiece">
+        <h4>Pair of Duck Showpiece</h4>
+        <p>Price: $120</p>
+        <p>Elegant handcrafted duck pair symbolizing love and serenity.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="images/budhaji.jpg" alt="Abstract Face Sculpture">
+        <h4>Lord Buddha Sculpture</h4>
+        <p>Price: $340</p>
+        <p>Modern art sculpture that adds a touch of sophistication and intrigue to any room’s decor.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="https://theartarium.com/cdn/shop/files/1_9453e1a9-c801-42da-9067-c611acaf15bc.jpg?v=1723096170" alt="Elephant Statue">
+        <h4>Royal Elephant Statue</h4>
+        <p>Price: $210</p>
+        <p>Symbol of strength and wisdom, this detailed elephant piece adds an ethnic royal charm to your living space.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/71D7xsZcxkL.jpg" alt="Vintage Gramophone">
+        <h4>Vintage Gramophone Decor</h4>
+        <p>Price: $480</p>
+        <p>Old-school vibes in a modern home—this vintage gramophone showpiece blends retro charm with modern flair.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+    </div>
+  </section>
+  
+  <section>
+    <h2 class="section-title" style="font-family: dance;font-size: 48px;">Home Accessories - Cushions & Curtains</h2>
+    <div class="products-section">
+  
+      <div class="product-card">
+        <img src="https://cdn11.bigcommerce.com/s-v6p3j3w79x/images/stencil/590x590/products/831/4965/Wild_Rose_gold_req2__27270.1696075723.jpg?c=1" alt="Luxury Velvet Cushion">
+        <h4>Luxury Velvet Cushion</h4>
+        <p>Price: $45</p>
+        <p>Plush velvet cushion with golden embroidery—perfect for elegant and cozy lounging.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/81uZDNMK6XL._AC_UF894,1000_QL80_.jpg" alt="Boho Style Cushion Set">
+        <h4>Boho Style Cushion Set (Pack of 5)</h4>
+        <p>Price: $120</p>
+        <p>Colorful, patterned cushions adding a playful and artsy flair to any couch or bed.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/61OX0FFXbCL.jpg" alt="Sheer White Curtains">
+        <h4>Sheer White Curtains</h4>
+        <p>Price: $65</p>
+        <p>Light-filtering sheer curtains that bring in natural light while adding soft elegance.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="https://m.media-amazon.com/images/I/81Lap+LRewL._AC_UF894,1000_QL80_.jpg" alt="Blackout Thermal Curtains">
+        <h4>Blackout Thermal Curtains</h4>
+        <p>Price: $98</p>
+        <p>Energy-saving curtains that block sunlight completely—perfect for bedrooms and media rooms.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title" style="font-family: dance;font-size: 48px;">Wall Art & Paintings</h2>
+    <div class="products-section">
+  
+      <div class="product-card">
+        <img src="https://kotart.in/cdn/shop/files/CanvasCS2468.jpg?v=1698337622" alt="Abstract Canvas Art">
+        <h4>Abstract Canvas Art</h4>
+        <p>Price: $180</p>
+        <p>Contemporary abstract design that adds a splash of color and creativity to your walls.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="https://thumbs.dreamstime.com/b/watercolor-autumn-forest-landscape-sunset-hand-drawn-painting-fantasy-art-nature-beautiful-background-gouache-153834924.jpg" alt="Nature Landscape Painting">
+        <h4>Nature Landscape Painting</h4>
+        <p>Price: $220</p>
+        <p>Serene mountain scenery in soft tones—perfect for creating a calming atmosphere.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="https://d35l77wxi0xou3.cloudfront.net/opencart/image/productFromFeb2020/Traditional%20Madhubani%20Painting1615964610-600x600.jpg" alt="Traditional Indian Art">
+        <h4>Traditional Indian Madhubani Art</h4>
+        <p>Price: $160</p>
+        <p>Hand-painted with cultural essence, this piece brings heritage and color into your space.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/f2/e2/85/f2e2857ec549b8c1022b0db6fa819346.jpg" alt="Metallic Wall Sculpture">
+        <h4>3D Metallic Wall Sculpture</h4>
+        <p>Price: $310</p>
+        <p>A luxurious metallic art piece with depth and dimension for modern wall aesthetics.</p>
+        <button>Add to Cart</button>
+      </div>
+  
+    </div>
+  </section>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('.product-card').forEach((card, index) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: 'power2.out'
+      });
+    });
+  </script>
+</body>
+</html>
