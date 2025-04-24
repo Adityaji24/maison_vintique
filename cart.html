@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart - Maison Vintique</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f0f0f;
+      color: #d4af37;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #1a1a1a;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(212, 175, 55, 0.1);
+    }
+
+    nav h2 {
+      color: #d4af37;
+      font-size: 1.8rem;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #d4af37;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #f9dc5c;
+    }
+
+    nav button {
+      padding: 8px 18px;
+      border: none;
+      background-color: #d4af37;
+      color: black;
+      font-weight: 600;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 22px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #f9dc5c;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 40px 0 20px;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 10px;
+    }
+
+    table {
+      width: 90%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.1);
+    }
+
+    table th, table td {
+      border: 1px solid #444;
+      padding: 14px;
+      text-align: left;
+      font-size: 1.2rem;
+    }
+
+    th {
+      background-color: #2b2b2b;
+      color: #d4af37;
+    }
+
+    td img {
+      width: 200px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #d4af37;
+    }
+
+    tr:nth-child(even) {
+      background-color: #181818;
+    }
+
+    tr:hover {
+      background-color: #2e2e2e;
+    }
+
+    .total-row {
+      font-size: 1.4rem;
+      font-weight: bold;
+      background-color: #2b2b2b;
+      color: #d4af37;
+    }
+
+    .total-row td {
+      text-align: right;
+      padding-right: 30px;
+    }
+
+    .total {
+      font-size: 1.6rem;
+      padding: 10px 20px;
+      background-color: #d4af37;
+      color: black;
+      border-radius: 10px;
+      margin: 20px auto;
+      width: 90%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h2>Maison Vintique</h2>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="vrplan.html">VR Planner</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+    </ul>
+    <a href="bookings.html"><button>Book Now</button></a>
+  </nav>
+
+  <!-- Cart Table -->
+  <h1>Your Decor Cart</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Item Image</th>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src="https://images-cdn.ubuy.co.in/64fb8229c9140c081532db60-kalri-luxury-crystal-indoor-chandeliers.jpg" alt="Golden Lamp"></td>
+        <td>Lotus Petal Crystal Chandelier</td>
+        <td>$1340</td>
+        <td>1</td>
+        <td>$1340</td>
+      </tr>
+      <tr>
+        <td><img src="images/wall decor.jpg" alt="Wall Art"></td>
+        <td>Luxury Abstract Wall Art</td>
+        <td>$420</td>
+        <td>1</td>
+        <td>$420</td>
+      </tr>
+      <tr>
+        <td><img src="https://drapestory.in/cdn/shop/products/2A_9e404700-9d9b-46b2-b2b8-8f34cfb46da6.jpg?v=1675060031" alt="Curtains"></td>
+        <td>Royal Gold Velvet Curtains</td>
+        <td>$360</td>
+        <td>2</td>
+        <td>$720</td>
+      </tr>
+      <tr>
+        <td><img src="https://kotart.in/cdn/shop/files/CanvasCS2468.jpg?v=1698337622" alt="Mirror"></td>
+        <td>Abstract Art Wall</td>
+        <td>$180</td>
+        <td>2</td>
+        <td>$360</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Total Calculation -->
+  <div class="total">
+    <p>Total: $2840</p>
+  </div>
+
+</body>
+</html>
